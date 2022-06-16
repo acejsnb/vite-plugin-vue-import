@@ -1,4 +1,4 @@
-# vite-components-import
+# vite-plugin-vue-import
 
 #### 按需加载vue3组件
 
