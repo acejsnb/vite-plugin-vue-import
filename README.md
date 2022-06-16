@@ -3,9 +3,9 @@
 #### 按需加载vue3组件
 
 ### 安装
-- `npm i -D @eks/vite-plugin-vue-import`
-- `yarn add -D @eks/vite-plugin-vue-import`
-- `pnpm add -D @eks/vite-plugin-vue-import`
+- `npm i -D vite-plugin-vue-import`
+- `yarn add -D vite-plugin-vue-import`
+- `pnpm add -D vite-plugin-vue-import`
 
 ### 使用
 
@@ -13,7 +13,7 @@
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
-import viteComponentsImport from '@eks/vite-plugin-vue-import';
+import viteComponentsImport from 'vite-plugin-vue-import';
 
 export default defineConfig({
     // ...
@@ -33,7 +33,7 @@ export default defineConfig({
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
-import viteComponentsImport from '@eks/vite-plugin-vue-import';
+import viteComponentsImport from 'vite-plugin-vue-import';
 
 export default defineConfig({
     // ...
@@ -54,7 +54,7 @@ export default defineConfig({
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
-import viteComponentsImport from '@eks/vite-plugin-vue-import';
+import viteComponentsImport from 'vite-plugin-vue-import';
 
 export default defineConfig({
     // ...
@@ -75,7 +75,7 @@ export default defineConfig({
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
-import viteComponentsImport from '@eks/vite-plugin-vue-import';
+import viteComponentsImport from 'vite-plugin-vue-import';
 
 export default defineConfig({
     // ...
