@@ -98,8 +98,10 @@ export const addImportToCode = (
                 let stylePath;
                 if (typeof style === 'function') {
                     stylePath = style(item);
-                } else if (style === 'css' || style) {
+                } else if (style === 'css' || style === true) {
                     stylePath = `${libName}/${libDirectory}/${item}/style.css`;
+                } else if (style === false) {
+                    stylePath = '';
                 } else {
                     stylePath = `${libName}/${libDirectory}/${item}/style.${style}`;
                 }
