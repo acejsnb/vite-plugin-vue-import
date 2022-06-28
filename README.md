@@ -9,7 +9,7 @@
 
 ### 使用
 
-- 默认加载`double-ui-vue/lib/[componentName]/style.css`
+- 默认加载`double-ui-vue/es/[componentName]/style.css`
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
@@ -50,7 +50,7 @@ export default defineConfig({
 
 ```
 
-- 加载less，style返回`double-ui-vue/lib/[componentName]/style.less`
+- 加载less，style返回`double-ui-vue/es/[componentName]/style.less`
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
@@ -92,7 +92,7 @@ export default defineConfig({
 
 ```
 
-- 加载base.css， 默认值`double-ui-vue/lib/base.css`
+- 加载base.css， 默认值`double-ui-vue/es/base.css`
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
@@ -104,7 +104,7 @@ export default defineConfig({
         viteComponentsImport([
             {
                 libName: 'double-ui-vue',
-                base: `double-ui-vue/lib/base.css`
+                base: `double-ui-vue/es/base.css`
             }
         ])
     ]
@@ -120,5 +120,5 @@ export default defineConfig({
 | libName      | 库名         | string                                      | ''        | true  |
 | style        | 加载css方式    | true/false/'css'/'less'/'sass'/(name) => {} | 'css'     | false |
 | base         | 加载base.css | boolean / string                            | 'css'     | false |
-| libDirectory | 组件文件夹      | string                                      | 'lib'     | false    |
+| libDirectory | 组件文件夹      | string                                      | 'es'     | false    |
 | camel2Dash   | 驼峰转横线      | boolean                                     | true      | false    |

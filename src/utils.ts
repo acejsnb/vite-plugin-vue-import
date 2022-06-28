@@ -44,7 +44,7 @@ export function parseImportModule (
                     if (!name) {
                         return;
                     }
-                    const { libDirectory = 'lib' } = matchLib;
+                    const { libDirectory = 'es' } = matchLib;
                     const libDir = libDirectory ? `${libDirectory}/` : '';
                     if (command === 'build') {
                         const finalName = camel2Dash ? paramCase(name) : name;
@@ -90,7 +90,7 @@ export const addImportToCode = (
 
     let importStr = '';
 
-    libs.forEach(({ libName, style = 'css', base = false, libDirectory = 'lib', camel2Dash = true }) => {
+    libs.forEach(({ libName, style = 'css', base = false, libDirectory = 'es', camel2Dash = true }) => {
         if (importMaps[libName]) {
             importMaps[libName].forEach(item => {
                 if (camel2Dash) item = paramCase(item);

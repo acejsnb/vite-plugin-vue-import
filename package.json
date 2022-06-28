@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-vue-import",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "按需加载组件",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
