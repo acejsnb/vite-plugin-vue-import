@@ -1,8 +1,12 @@
 import type { ResolvedConfig } from 'vite';
 import * as parser from '@babel/parser';
 import generate from '@babel/generator';
-import { paramCase } from 'param-case';
 import type { LibItem, ImportMaps, AstNode, Specifiers } from './type';
+
+const parseName = (name: string): string => {
+    const str = name[0].toLowerCase() + name.substring(1);
+    return str.replace(/([A-Z])/g, ($1) => `-${$1.toLowerCase()}`);
+}
 
 const isString = (str: unknown) => (typeof str === 'string');
 const isArray = (libs: unknown) => Array.isArray(libs);
@@ -47,7 +51,7 @@ export function parseImportModule (
                     const { libDirectory = 'es' } = matchLib;
                     const libDir = libDirectory ? `${libDirectory}/` : '';
                     if (command === 'build') {
-                        const finalName = camel2Dash ? paramCase(name) : name;
+                        const finalName = camel2Dash ? parseName(name) : name;
                         newImportStatement += `import ${localName} from '${libName}/${libDir}${finalName}';`;
                         toBeRemoveIndex.push(index);
                     }
@@ -93,7 +97,7 @@ export const addImportToCode = (
     libs.forEach(({ libName, style = 'css', base = false, libDirectory = 'es', camel2Dash = true }) => {
         if (importMaps[libName]) {
             importMaps[libName].forEach(item => {
-                if (camel2Dash) item = paramCase(item);
+                if (camel2Dash) item = parseName(item);
                 const basePath = base ? `import '${libName}/${libDirectory}/base.css';` : '';
                 let stylePath;
                 if (typeof style === 'function') {

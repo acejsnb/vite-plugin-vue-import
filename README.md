@@ -1,5 +1,7 @@
 # vite-plugin-vue-import
 
+[![OSCS Status](https://www.oscs1024.com/platform/badge/xiongshuang/vite-plugin-vue-import.svg?size=small)](https://www.oscs1024.com/project/xiongshuang/vite-plugin-vue-import?ref=badge_small)
+
 #### 按需加载vue3组件
 
 ### 安装
