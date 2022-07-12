@@ -117,10 +117,10 @@ export default defineConfig({
 
 ### options参数
 
-| 参数           | 说明         | 类型                                          | 默认值   | 必须    |
-|--------------|------------|---------------------------------------------|-------|-------|
-| libName      | 库名         | string                                      | 'es'  | true  |
+| 参数           | 说明         | 类型                                    | 默认值   | 必须    |
+|--------------|------------|---------------------------------------|-------|-------|
+| libName      | 库名         | string                                | 'es'  | true  |
 | style        | 加载css方式    | true/false/'css'/'less'/'sass'/(name) => {} | 'css' | false |
-| base         | 加载base.css | boolean / string                            | 'css' | false |
-| libDirectory | 组件文件夹      | string                                      | 'es'  | false    |
-| camel2Dash   | 驼峰转横线      | boolean                                     | true  | false    |
+| base         | 加载base.css | boolean      | string | false | false |
+| libDirectory | 组件文件夹      | string       | 'es'  | false    |
+| camel2Dash   | 驼峰转横线      | boolean       | true  | false    |

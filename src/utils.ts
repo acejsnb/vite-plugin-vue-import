@@ -98,7 +98,7 @@ export const addImportToCode = (
         if (importMaps[libName]) {
             importMaps[libName].forEach(item => {
                 if (camel2Dash) item = parseName(item);
-                const basePath = base ? `import '${libName}/${libDirectory}/base.css';` : '';
+                const basePath = (base && typeof base === 'string') ? base : `import '${libName}/${libDirectory}/base.css';`;
                 let stylePath;
                 if (typeof style === 'function') {
                     stylePath = style(item);
