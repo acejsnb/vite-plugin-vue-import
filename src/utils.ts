@@ -62,8 +62,7 @@ export function parseImportModule (
 
     ast.program.body = astBody.filter((item: any, index: number) => !toBeRemoveIndex.includes(index));
 
-    let codeRemoveOriginImport = generate(ast).code;
-    codeRemoveOriginImport = `${newImportStatement}; ${codeRemoveOriginImport}`;
+    const codeRemoveOriginImport = `${newImportStatement}; ${generate(ast).code}`;
 
     return { importMaps, codeRemoveOriginImport };
 }
