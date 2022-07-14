@@ -6,7 +6,7 @@ export interface LibItem {
     style?: Style | boolean | 'css'
     base?: boolean | string
     // default `es`
-    libDirectory?: string
+    libDir?: string
     // whether convert component name from camel to dash
     camel2Dash?: boolean
 }

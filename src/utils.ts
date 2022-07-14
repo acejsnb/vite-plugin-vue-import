@@ -1,15 +1,13 @@
 import type { ResolvedConfig } from 'vite';
-import * as parser from '@babel/parser';
+import { parse } from '@babel/parser';
 import generate from '@babel/generator';
 import type { LibItem, ImportMaps, AstNode, Specifiers } from './type';
 
-const parseName = (name: string): string => {
-    const str = name[0].toLowerCase() + name.substring(1);
-    return str.replace(/([A-Z])/g, ($1) => `-${$1.toLowerCase()}`);
-}
+// 驼峰转横线
+const camel2DashName = (name: string): string => name[0].toLowerCase() + name.substring(1).replace(/([A-Z])/g, ($1) => `-${$1.toLowerCase()}`);
 
 const isString = (str: unknown) => (typeof str === 'string');
-const isArray = (libs: unknown) => Array.isArray(libs);
+const isArray = (list: unknown) => Array.isArray(list);
 
 export const optionsCheck = (libs: LibItem[]) => {
     if (isArray(libs) && libs?.length) return true;
@@ -24,7 +22,7 @@ export function parseImportModule (
     libs: LibItem[],
     command: ResolvedConfig['command']
 ) {
-    const ast = parser.parse(code, {
+    const ast = parse(code, {
         sourceType: 'module',
         plugins: [
             'jsx'
@@ -45,14 +43,11 @@ export function parseImportModule (
                 astNode.specifiers.forEach((item) => {
                     const name = (item as Specifiers)?.imported.name;
                     const localName = item?.local.name;
-                    if (!name) {
-                        return;
-                    }
-                    const { libDirectory = 'es' } = matchLib;
-                    const libDir = libDirectory ? `${libDirectory}/` : '';
+                    if (!name) return;
+                    const { libDir = 'es' } = matchLib;
                     if (command === 'build') {
-                        const finalName = camel2Dash ? parseName(name) : name;
-                        newImportStatement += `import ${localName} from '${libName}/${libDir}${finalName}';`;
+                        const finalName = camel2Dash ? camel2DashName(name) : name;
+                        newImportStatement += `import ${localName} from '${libName}/${libDir}/${finalName}';`;
                         toBeRemoveIndex.push(index);
                     }
                     if (importMaps[libName]) {
@@ -68,7 +63,7 @@ export function parseImportModule (
     ast.program.body = astBody.filter((item: any, index: number) => !toBeRemoveIndex.includes(index));
 
     let codeRemoveOriginImport = generate(ast).code;
-    codeRemoveOriginImport = `${newImportStatement} ; ${codeRemoveOriginImport}`;
+    codeRemoveOriginImport = `${newImportStatement}; ${codeRemoveOriginImport}`;
 
     return { importMaps, codeRemoveOriginImport };
 }
@@ -94,20 +89,20 @@ export const addImportToCode = (
 
     let importStr = '';
 
-    libs.forEach(({ libName, style = 'css', base = false, libDirectory = 'es', camel2Dash = true }) => {
+    libs.forEach(({ libName, style = 'css', base = false, libDir = 'es', camel2Dash = true }) => {
         if (importMaps[libName]) {
             importMaps[libName].forEach(item => {
-                if (camel2Dash) item = parseName(item);
-                const basePath = (base && typeof base === 'string') ? base : `import '${libName}/${libDirectory}/base.css';`;
+                if (camel2Dash) item = camel2DashName(item);
+                const basePath = (base && typeof base === 'string') ? base : `import '${libName}/${libDir}/base.css';`;
                 let stylePath;
                 if (typeof style === 'function') {
                     stylePath = style(item);
                 } else if (style === 'css' || style === true) {
-                    stylePath = `${libName}/${libDirectory}/${item}/style.css`;
+                    stylePath = `${libName}/${libDir}/${item}/style.css`;
                 } else if (style === false) {
                     stylePath = '';
                 } else {
-                    stylePath = `${libName}/${libDirectory}/${item}/style.${style}`;
+                    stylePath = `${libName}/${libDir}/${item}/style.${style}`;
                 }
                 const styleImportString = basePath + stylePathHandler(stylePath);
                 importStr += styleImportString;
