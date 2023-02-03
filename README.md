@@ -20,7 +20,7 @@ import viteComponentsImport from 'vite-plugin-vue-import';
 export default defineConfig({
     // ...
     plugins: [
-        viteComponentsImport([
+        VitePluginVueImport([
             {
                 libName: 'double-ui-vue'
             }
@@ -35,12 +35,12 @@ export default defineConfig({
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
-import viteComponentsImport from 'vite-plugin-vue-import';
+import VitePluginVueImport from 'vite-plugin-vue-import';
 
 export default defineConfig({
     // ...
     plugins: [
-        viteComponentsImport([
+        VitePluginVueImport([
             {
                 libName: 'double-ui-vue',
                 style: false
@@ -56,12 +56,12 @@ export default defineConfig({
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
-import viteComponentsImport from 'vite-plugin-vue-import';
+import VitePluginVueImport from 'vite-plugin-vue-import';
 
 export default defineConfig({
     // ...
     plugins: [
-        viteComponentsImport([
+        VitePluginVueImport([
             {
                 libName: 'double-ui-vue',
                 style: 'less'
@@ -77,12 +77,12 @@ export default defineConfig({
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
-import viteComponentsImport from 'vite-plugin-vue-import';
+import VitePluginVueImport from 'vite-plugin-vue-import';
 
 export default defineConfig({
     // ...
     plugins: [
-        viteComponentsImport([
+        VitePluginVueImport([
             {
                 libName: 'double-ui-vue',
                 style: (name) => `double-ui-vue/es/${name}/style.css`
@@ -98,12 +98,12 @@ export default defineConfig({
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
-import viteComponentsImport from 'vite-plugin-vue-import';
+import VitePluginVueImport from 'vite-plugin-vue-import';
 
 export default defineConfig({
     // ...
     plugins: [
-        viteComponentsImport([
+        VitePluginVueImport([
             {
                 libName: 'double-ui-vue',
                 base: `double-ui-vue/es/base.css`
